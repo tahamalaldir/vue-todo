@@ -3,7 +3,7 @@
     <b-row>
       <b-col><h1>Todos</h1></b-col>
     </b-row>
-    <b-row>
+    <b-row class="mt-3">
       <b-col>
         <b-input-group class="w-75 mx-auto">
           <b-form-input
@@ -21,7 +21,7 @@
         </b-input-group>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mt-5">
       <b-col><ContinuesTodo :Todos="Todos"/></b-col>
       <b-col><CompletedTodo /></b-col>
     </b-row>
