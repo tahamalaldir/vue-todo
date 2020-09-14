@@ -1,12 +1,12 @@
 <template>
   <b-col>
     <b-input-group class="w-75 mx-auto">
-      <b-form-input
+      <!-- <b-form-input
         class="mr-2"
         size="lg"
         v-model="todo.id"
         @keyup.enter="handleAdd"
-      ></b-form-input>
+      ></b-form-input> -->
       <b-form-input
         class="mr-2"
         size="lg"
@@ -31,11 +31,14 @@ export default {
   name: "AddTodo",
   data() {
     return {
-      todo: { id: "", text: "" },
+      queue: 0,
+      todo: { id: "", text: "",isCompleted:false },
     };
   },
   methods: {
     handleAdd() {
+      this.queue +=1;
+      this.todo.id = this.queue;
       this.$emit("add:todo", this.todo);
       this.todo.text = "";
       this.todo.id = "";
