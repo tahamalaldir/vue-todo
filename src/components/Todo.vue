@@ -1,12 +1,31 @@
 <template>
-  <div>
-    <h1>Todos</h1>
-    <input type="text" v-model="todoText" @keyup.enter="addNewTodo" />
-    <button v-if="todoText.length > 0" @click="addNewTodo">Tıkla</button>
-
-    <ContinuesTodo :Todos="Todos" />
-    <CompletedTodo />
-  </div>
+  <b-container>
+    <b-row>
+      <b-col><h1>Todos</h1></b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-input-group class="w-75 mx-auto">
+          <b-form-input
+            v-model="todoText"
+            @keyup.enter="addNewTodo"
+          ></b-form-input>
+          <b-input-group-append>
+            <b-button
+              variant="warning"
+              :disabled="!todoText"
+              @click="addNewTodo"
+              >Add a Todo</b-button
+            >
+          </b-input-group-append>
+        </b-input-group>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col><ContinuesTodo :Todos="Todos"/></b-col>
+      <b-col><CompletedTodo /></b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -31,4 +50,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+
+</style>
