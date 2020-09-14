@@ -13,10 +13,10 @@
     <b-list-group class="mt-4 mb-4" v-else>
       <b-list-group-item
         class="align-items-center item-color"
-        v-for="(todo,index) in todos"
+        v-for="(todo, index) in todos"
         :key="index"
       >
-        <p>
+        <p v-if="!todo.isCompleted">
           {{ todo.text }}
           <b-button
             class="float-right"
@@ -25,7 +25,11 @@
           >
             <b-icon icon="x" scale="2" aria-hidden="true"></b-icon>
           </b-button>
-          <b-button class="float-right mr-1" variant="outline-success">
+          <b-button
+            class="float-right mr-1"
+            variant="outline-success"
+            @click="handleCompleted"
+          >
             <b-icon icon="check" scale="2" aria-hidden="true"></b-icon>
           </b-button>
         </p>
@@ -43,6 +47,10 @@ export default {
   methods: {
     handleDelete(todo) {
       this.$emit("delete:todo", todo);
+      console.log(todo);
+    },
+    handleCompleted(todo) {
+      this.$emit("completed:todo", todo);
       console.log(todo);
     },
   },

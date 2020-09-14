@@ -7,7 +7,11 @@
       <AddTodo @add:todo="addTodo" />
     </b-row>
     <b-row class="mt-5">
-      <ContinuesTodo :todos="todos" @delete:todo="deleteTodo" />
+      <ContinuesTodo
+        :todos="todos"
+        @delete:todo="deleteTodo"
+        @completed:todo="completedTodo"
+      />
       <CompletedTodo />
     </b-row>
   </b-container>
@@ -30,11 +34,15 @@ export default {
     addTodo: function(todo) {
       const newTodo = { ...todo };
       this.todos = [...this.todos, newTodo];
-      //this.Todos.push(this.todoText);
     },
     deleteTodo: function(todo) {
       this.todos = this.todos.filter(
         (todoToFilter) => todoToFilter.id !== todo.id
+      );
+    },
+    completedTodo: function() {
+      this.todos = this.todos.filter(
+        (todoToFilter) => todoToFilter.id !== this.todos.id
       );
     },
   },
