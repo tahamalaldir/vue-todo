@@ -9,12 +9,17 @@
       Continues To Do Not Found
       <b-icon icon="exclamation-circle-fill" variant="danger"></b-icon>
     </h3>
-    <b-list-group v-else
+    <b-list-group
+      v-else
       class="mt-4 mb-4 item-color"
       v-for="(todo, index) in todos"
       :key="index"
     >
-      <b-list-group-item class="align-items-center " v-if="!todo.isCompleted">
+      <b-list-group-item
+        variant="light"
+        class="align-items-center "
+        v-if="!todo.isCompleted"
+      >
         {{ todo.text }}
         <b-button
           class="float-right"
@@ -46,9 +51,7 @@ export default {
       this.$emit("delete:todo", todo);
     },
     handleCompleted(todo) {
-      console.log(todo.isCompleted);
       this.$emit("completed:todo", todo);
-      console.log(todo.isCompleted);
     },
   },
 };

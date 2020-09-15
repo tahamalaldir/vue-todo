@@ -9,12 +9,16 @@
       Completed To Do Not Found
       <b-icon icon="exclamation-circle-fill" variant="danger"></b-icon>
     </h3>
-    <b-list-group v-else
-      class="mt-4 mb-4"
+    <b-list-group
+      v-else
+      class="mt-4 mb-4 item-color"
       v-for="(todo, index) in completedTodos"
       :key="index"
     >
-      <b-list-group-item class="align-items-center item-color">
+      <b-list-group-item
+        variant="light"
+        class="align-items-center item-color  text"
+      >
         {{ todo.text }}
         <b-button
           class="float-right"
@@ -42,4 +46,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.text {
+  text-decoration: line-through;
+}
+</style>

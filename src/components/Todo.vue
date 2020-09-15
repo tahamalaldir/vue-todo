@@ -58,10 +58,4 @@ export default {
 };
 </script>
 
-<style>
-.item-color {
-  background-color: #181a1b;
-  color: #fddb3a;
-  border: 2px solid #fddb3a;
-}
-</style>
+<style></style>
