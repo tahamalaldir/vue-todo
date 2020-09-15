@@ -12,7 +12,10 @@
         @delete:todo="deleteTodo"
         @completed:todo="completedTodo"
       />
-      <CompletedTodo />
+      <CompletedTodo
+        :completedTodos="completedTodos"
+        @delete:todo="deleteTodo"
+      />
     </b-row>
   </b-container>
 </template>
@@ -28,6 +31,7 @@ export default {
   data() {
     return {
       todos: [],
+      completedTodos: [],
     };
   },
   methods: {
@@ -39,18 +43,25 @@ export default {
       this.todos = this.todos.filter(
         (todoToFilter) => todoToFilter.id !== todo.id
       );
+      this.completedTodos = this.completedTodos.filter(
+        (todoToFilter) => todoToFilter.id !== todo.id
+      );
     },
-    completedTodo: function() {
+    completedTodo: function(todo) {
+      const newTodo = { ...todo };
+      this.completedTodos = [...this.completedTodos, newTodo];
       this.todos = this.todos.filter(
-        (todoToFilter) => todoToFilter.id !== this.todos.id
+        (todoToFilter) => todoToFilter.id !== todo.id
       );
     },
   },
 };
 </script>
 
-<style scoped>
-.color {
-  color: #181a1b;
+<style>
+.item-color {
+  background-color: #181a1b;
+  color: #fddb3a;
+  border: 2px solid #fddb3a;
 }
 </style>
