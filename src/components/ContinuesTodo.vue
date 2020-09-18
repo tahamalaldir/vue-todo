@@ -16,7 +16,7 @@
       :key="index"
     >
       <b-list-group-item
-        variant="light"
+        variant="dark"
         class="align-items-center "
         v-if="!todo.isCompleted"
       >
