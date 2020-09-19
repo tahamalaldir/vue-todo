@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { uuid } from "vue-uuid";
 export default {
   name: "AddTodo",
   data() {
@@ -31,8 +32,7 @@ export default {
   },
   methods: {
     handleAdd() {
-      this.queue += 1;
-      this.todo.id = this.queue;
+      this.todo.id = uuid.v4();
       this.$emit("add:todo", this.todo);
       this.todo.text = "";
     },
