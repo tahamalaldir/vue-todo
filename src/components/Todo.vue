@@ -34,6 +34,29 @@ export default {
       completedTodos: [],
     };
   },
+  watch: {
+    todos: {
+      handler() {
+        localStorage.setItem("todos", JSON.stringify(this.todos));
+      },
+      deep: true,
+    },
+    completedTodos: {
+      handler() {
+        localStorage.setItem(
+          "completedTodos",
+          JSON.stringify(this.completedTodos)
+        );
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    if (localStorage.getItem("todos"))
+      this.todos = JSON.parse(localStorage.getItem("todos"));
+    if (localStorage.getItem("completedTodos"))
+      this.completedTodos = JSON.parse(localStorage.getItem("completedTodos"));
+  },
   methods: {
     addTodo: function(todo) {
       const newTodo = { ...todo };
