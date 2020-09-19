@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       queue: 0,
-      todo: { id: "", text: "", isCompleted: false },
+      todo: { id: "", text: "" },
     };
   },
   methods: {
@@ -35,7 +35,6 @@ export default {
       this.todo.id = this.queue;
       this.$emit("add:todo", this.todo);
       this.todo.text = "";
-      this.todo.id = "";
     },
   },
 };
