@@ -11,13 +11,13 @@
     </h3>
     <b-list-group
       v-else
-      class="mt-4 mb-4 item-color"
+      class="mt-4 mb-4"
       v-for="(todo, index) in completedTodos"
       :key="index"
     >
       <b-list-group-item
         variant="dark"
-        class="align-items-center item-color  text"
+        class="align-items-center text text-decoration"
       >
         {{ todo.text }}
         <b-button
@@ -48,6 +48,9 @@ export default {
 
 <style>
 .text {
+  font-size: 1.4rem;
+}
+.text-decoration {
   text-decoration: line-through;
 }
 </style>

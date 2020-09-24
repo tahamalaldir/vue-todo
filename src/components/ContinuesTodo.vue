@@ -11,13 +11,13 @@
     </h3>
     <b-list-group
       v-else
-      class="mt-4 mb-4 item-color"
+      class="mt-4 mb-4"
       v-for="(todo, index) in todos"
       :key="index"
     >
       <b-list-group-item
         variant="dark"
-        class="align-items-center "
+        class="align-items-center text"
         v-if="!todo.isCompleted"
       >
         {{ todo.text }}
