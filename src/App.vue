@@ -14,6 +14,18 @@ export default {
       mode: "light",
     };
   },
+  watch: {
+    mode: {
+      handler() {
+        localStorage.setItem("mode", JSON.stringify(this.mode));
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    if (localStorage.getItem("mode"))
+      this.mode = JSON.parse(localStorage.getItem("mode"));
+  },
   components: {
     Todo,
   },
