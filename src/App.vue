@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="text-monospace">
-    <Todo />
+  <div class="app text-monospace" :class="mode">
+    <Todo :mode="mode" @toggle="toggle" />
   </div>
 </template>
 
@@ -9,15 +9,42 @@ import Todo from "./components/Todo.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      mode: "light",
+    };
+  },
   components: {
     Todo,
+  },
+  methods: {
+    toggle() {
+      if (this.mode === "dark") {
+        this.mode = "light";
+      } else {
+        this.mode = "dark";
+      }
+    },
   },
 };
 </script>
 
 <style>
-#app {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app {
   text-align: center;
-  margin-top: 60px;
+  padding-top: 60px;
+  transition: background 0.3s ease-in-out;
+  width: 100%;
+  min-height: 100vh;
+}
+.dark {
+  background-color: #181a1b;
+  color: #fddb2f;
+  transition: background 0.3s ease-in-out;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <b-container>
+    <Toggle :mode="mode" @toggle="$emit('toggle')" />
     <b-row>
       <b-col><h1 class="font-weight-bold">Todos</h1></b-col>
     </b-row>
@@ -24,10 +25,11 @@
 import ContinuesTodo from "./ContinuesTodo.vue";
 import CompletedTodo from "./CompletedTodo.vue";
 import AddTodo from "./AddTodo.vue";
+import Toggle from "./Toggle.vue";
 export default {
   name: "Todo",
-  components: { ContinuesTodo, CompletedTodo, AddTodo },
-
+  components: { ContinuesTodo, CompletedTodo, AddTodo, Toggle },
+  props: ["mode"],
   data() {
     return {
       todos: [],

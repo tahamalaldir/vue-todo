@@ -8,13 +8,9 @@
         @keyup.enter="handleAdd"
       ></b-form-input>
       <b-input-group-append>
-        <b-button
-          class="color"
-          variant="warning"
-          :disabled="!todo.text"
-          @click="handleAdd"
-          >Add a Todo</b-button
-        >
+        <button class="btn buttonAdd" :disabled="!todo.text" @click="handleAdd">
+          Add a Todo
+        </button>
       </b-input-group-append>
     </b-input-group>
   </b-col>
@@ -26,7 +22,6 @@ export default {
   name: "AddTodo",
   data() {
     return {
-      queue: 0,
       todo: { id: "", text: "" },
     };
   },
@@ -40,4 +35,34 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.light .buttonAdd {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  transition: background 0.3s ease-in-out;
+}
+.light .buttonAdd:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+.light .buttonAdd:focus {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+.dark .buttonAdd {
+  background-color: #fddb2f;
+  color: #181a1b;
+  transition: background 0.3s ease-in-out;
+}
+.dark .buttonAdd:hover {
+  background-color: #e0a800;
+  color: #181a1b;
+}
+.dark .buttonAdd:focus {
+  background-color: #e0a800;
+  color: #181a1b;
+}
+</style>
