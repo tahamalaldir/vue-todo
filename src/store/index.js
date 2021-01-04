@@ -19,18 +19,17 @@ export default new Vuex.Store({
       state.todos.continues.push({ text: todo, id: id });
     },
     deleteTodo(state, todoID) {
-      let indexContinues = state.todos.continues.findIndex((c) => {
-        if (c.id == todoID) {
-          console.log(c);
-          state.todos.continues.splice(indexContinues, 1);
+      if (state.todos.continues.find((c) => c.id === todoID)) {
+        let index = state.todos.continues.findIndex((c) => c.id == todoID);
+        if (index > -1) {
+          state.todos.continues.splice(index, 1);
         }
-      });
-      let indexCompleted = state.todos.completed.findIndex((c) => {
-        if (c.id == todoID) {
-          console.log(c);
-          state.todos.completed.splice(indexCompleted, 1);
+      } else if (state.todos.completed.find((c) => c.id === todoID)) {
+        let index = state.todos.completed.findIndex((c) => c.id == todoID);
+        if (index > -1) {
+          state.todos.completed.splice(index, 1);
         }
-      });
+      }
     },
     completedTodo(state, todo) {
       let index = state.todos.continues.findIndex((c) => c.id == todo.id);
