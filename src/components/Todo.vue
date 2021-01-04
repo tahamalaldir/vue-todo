@@ -5,37 +5,32 @@
       <b-col><h1 class="font-weight-bold">Todos</h1></b-col>
     </b-row>
     <b-row class="mt-3">
-      <AddTodo @add:todo="addTodo" />
+      <AddTodo />
     </b-row>
     <b-row class="mt-5">
-      <ContinuesTodo
-        :todos="todos"
-        @delete:todo="deleteTodo"
-        @completed:todo="completedTodo"
-      />
-      <CompletedTodo
-        :completedTodos="completedTodos"
-        @delete:todo="deleteTodo"
+      <Todos title="Continues" :todos="$store.state.todos.continues" />
+      <Todos
+        title="Completed"
+        :dizayn="dizayn"
+        :todos="$store.state.todos.completed"
       />
     </b-row>
   </b-container>
 </template>
-
 <script>
-import ContinuesTodo from "./ContinuesTodo.vue";
-import CompletedTodo from "./CompletedTodo.vue";
 import AddTodo from "./AddTodo.vue";
 import Toggle from "./Toggle.vue";
+import Todos from "./Todos.vue";
+import { mapState } from "vuex";
 export default {
   name: "Todo",
-  components: { ContinuesTodo, CompletedTodo, AddTodo, Toggle },
-  props: ["mode"],
+  components: { Todos, AddTodo, Toggle },
   data() {
     return {
-      todos: [],
-      completedTodos: [],
+      dizayn: "text-decoration: line-through;",
     };
   },
+  props: ["mode"],
   watch: {
     todos: {
       handler() {
@@ -43,43 +38,8 @@ export default {
       },
       deep: true,
     },
-    completedTodos: {
-      handler() {
-        localStorage.setItem(
-          "completedTodos",
-          JSON.stringify(this.completedTodos)
-        );
-      },
-      deep: true,
-    },
   },
-  mounted() {
-    if (localStorage.getItem("todos"))
-      this.todos = JSON.parse(localStorage.getItem("todos"));
-    if (localStorage.getItem("completedTodos"))
-      this.completedTodos = JSON.parse(localStorage.getItem("completedTodos"));
-  },
-  methods: {
-    addTodo: function(todo) {
-      const newTodo = { ...todo };
-      this.todos = [...this.todos, newTodo];
-    },
-    deleteTodo: function(todo) {
-      this.todos = this.todos.filter(
-        (todoToFilter) => todoToFilter.id !== todo.id
-      );
-      this.completedTodos = this.completedTodos.filter(
-        (todoToFilter) => todoToFilter.id !== todo.id
-      );
-    },
-    completedTodo: function(todo) {
-      const newTodo = { ...todo };
-      this.completedTodos = [...this.completedTodos, newTodo];
-      this.todos = this.todos.filter(
-        (todoToFilter) => todoToFilter.id !== todo.id
-      );
-    },
-  },
+  computed: mapState(["todos"]),
 };
 </script>
 

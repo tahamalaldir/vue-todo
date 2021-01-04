@@ -1,0 +1,45 @@
+<template>
+  <b-col class="my-1 px-1">
+    <b-card
+      border-variant="warning"
+      bg-variant="dark"
+      text-variant="light"
+      class="text-center "
+      style="min-width:30rem;"
+    >
+      <b-card-text> {{ todo.text }} </b-card-text>
+      <b-card-footer>
+        <b-button
+          class="mr-2"
+          variant="outline-danger"
+          @click="handleDelete(todo)"
+        >
+          <b-icon icon="x" scale="2" aria-hidden="true"></b-icon>
+        </b-button>
+        <b-button
+          class="ml-2"
+          variant="outline-success"
+          @click="handleCompleted(todo)"
+        >
+          <b-icon icon="check" scale="2" aria-hidden="true"></b-icon>
+        </b-button>
+      </b-card-footer> </b-card
+  ></b-col>
+</template>
+
+<script>
+export default {
+  name: "TodosCard",
+  props: { todo: Object },
+  methods: {
+    handleDelete(todo) {
+      this.$store.commit("deleteTodo", todo.id);
+    },
+    handleCompleted(todo) {
+      this.$store.commit("completedTodo", todo);
+    },
+  },
+};
+</script>
+
+<style></style>
