@@ -4,11 +4,12 @@
       <b-form-input
         class="mr-2"
         size="lg"
-        v-model="todo.text"
-        @keyup.enter="handleAdd"
+        v-model="todo"
+        placeholder="Enter something to do..."
+        @keyup.enter="onSubmit"
       ></b-form-input>
       <b-input-group-append>
-        <button class="btn buttonAdd" :disabled="!todo.text" @click="handleAdd">
+        <button class="btn buttonAdd" :disabled="!todo" @click="onSubmit">
           Add a Todo
         </button>
       </b-input-group-append>
@@ -17,19 +18,17 @@
 </template>
 
 <script>
-import { uuid } from "vue-uuid";
 export default {
   name: "AddTodo",
   data() {
     return {
-      todo: { id: "", text: "" },
+      todo: "",
     };
   },
   methods: {
-    handleAdd() {
-      this.todo.id = uuid.v4();
-      this.$emit("add:todo", this.todo);
-      this.todo.text = "";
+    onSubmit() {
+      this.$store.commit("addTodo", this.todo);
+      this.todo = "";
     },
   },
 };
