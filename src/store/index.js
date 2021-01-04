@@ -7,11 +7,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     todos: {
-      continues: [
-        { text: "deneme6", id: "948f2450-ba1c-477d-b65e-8766ac235cab" },
-      ],
+      continues: [],
       completed: [],
     },
+    mode: "light",
   },
   mutations: {
     addTodo(state, todo) {
@@ -41,6 +40,16 @@ export default new Vuex.Store({
     initialiseStore(state) {
       if (localStorage.getItem("todos")) {
         state.todos = JSON.parse(localStorage.getItem("todos"));
+      }
+      if (localStorage.getItem("mode")) {
+        state.mode = JSON.parse(localStorage.getItem("mode"));
+      }
+    },
+    toggle(state) {
+      if (state.mode === "dark") {
+        state.mode = "light";
+      } else if (state.mode === "light") {
+        state.mode = "dark";
       }
     },
   },

@@ -1,16 +1,9 @@
 <template>
   <div class="toggle-wrapper">
-    <!-- <label class="toggle">
-      <input
-        type="checkbox"
-        :checked="mode === 'dark' ? 'checked' : false"
-        @change="$emit('toggle')"/>
-      <span class="toggler round"></span
-    ></label> -->
-    <button class="btn toggleBtn" @click="$emit('toggle')">
+    <button class="btn toggleBtn" @click="handleToggle">
       <b-icon
         class="toggle"
-        v-if="mode === 'light'"
+        v-if="this.$store.state.mode === 'light'"
         icon="moon"
         aria-hidden="true"
       ></b-icon>
@@ -26,7 +19,12 @@
 
 <script>
 export default {
-  props: ["mode"],
+  name: "Toggle",
+  methods: {
+    handleToggle() {
+      this.$store.commit("toggle");
+    },
+  },
 };
 </script>
 

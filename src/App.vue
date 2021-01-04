@@ -1,20 +1,24 @@
 <template>
-  <div class="app text-monospace" :class="mode">
-    <Todo :mode="mode" @toggle="toggle" />
+  <div class="app text-monospace" :class="this.$store.state.mode">
+    <Todo />
   </div>
 </template>
 
 <script>
 import Todo from "./components/Todo.vue";
-
+import { mapState } from "vuex";
 export default {
   name: "App",
-  data() {
-    return {
-      mode: "light",
-    };
+  components: {
+    Todo,
   },
   watch: {
+    todos: {
+      handler() {
+        localStorage.setItem("todos", JSON.stringify(this.todos));
+      },
+      deep: true,
+    },
     mode: {
       handler() {
         localStorage.setItem("mode", JSON.stringify(this.mode));
@@ -22,22 +26,7 @@ export default {
       deep: true,
     },
   },
-  mounted() {
-    if (localStorage.getItem("mode"))
-      this.mode = JSON.parse(localStorage.getItem("mode"));
-  },
-  components: {
-    Todo,
-  },
-  methods: {
-    toggle() {
-      if (this.mode === "dark") {
-        this.mode = "light";
-      } else {
-        this.mode = "dark";
-      }
-    },
-  },
+  computed: mapState(["todos", "mode"]),
 };
 </script>
 
