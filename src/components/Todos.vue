@@ -14,6 +14,7 @@
         v-for="(todo, i) in todos"
         :key="i"
         :todo="todo"
+        :title="title"
       />
     </b-row>
   </b-col>

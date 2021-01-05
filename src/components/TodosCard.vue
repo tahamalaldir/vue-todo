@@ -17,6 +17,7 @@
           <b-icon icon="x" scale="2" aria-hidden="true"></b-icon>
         </b-button>
         <b-button
+          v-if="title === 'Continues'"
           class="ml-2"
           variant="outline-success"
           @click="handleCompleted(todo)"
@@ -30,7 +31,7 @@
 <script>
 export default {
   name: "TodosCard",
-  props: { todo: Object },
+  props: { title: String, todo: Object },
   methods: {
     handleDelete(todo) {
       this.$store.commit("deleteTodo", todo.id);
