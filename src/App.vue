@@ -1,16 +1,41 @@
 <template>
   <div class="app text-monospace" :class="this.$store.state.mode">
-    <Todo />
+    <b-container>
+      <toggle />
+      <b-row>
+        <b-col><h1 class="font-weight-bold">Todos</h1></b-col>
+      </b-row>
+      <b-row class="mt-3">
+        <add-todo />
+      </b-row>
+      <b-row class="mt-5 pb-5">
+        <todos title="Continues" :todos="$store.state.todos.continues" />
+        <todos
+          title="Completed"
+          :dizayn="dizayn"
+          :todos="$store.state.todos.completed"
+        />
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-import Todo from "./components/Todo.vue";
+import AddTodo from "@/components/AddTodo.vue";
+import Toggle from "@/components/Toggle.vue";
+import Todos from "@/components/Todos.vue";
 import { mapState } from "vuex";
 export default {
   name: "App",
   components: {
-    Todo,
+    Todos,
+    AddTodo,
+    Toggle,
+  },
+  data() {
+    return {
+      dizayn: "text-decoration: line-through;",
+    };
   },
   watch: {
     todos: {

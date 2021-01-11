@@ -9,10 +9,10 @@
       <b-icon icon="exclamation-circle-fill" variant="danger"></b-icon>
     </h3>
     <b-row>
-      <TodosCard
+      <todos-card
         :style="dizayn"
-        v-for="(todo, i) in todos"
-        :key="i"
+        v-for="todo in todos"
+        :key="todo.id"
         :todo="todo"
         :title="title"
       />
