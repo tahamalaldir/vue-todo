@@ -1,31 +1,29 @@
 <template>
-  <b-col class="my-1 px-1">
-    <b-card
-      border-variant="warning"
-      bg-variant="dark"
-      text-variant="light"
-      class="text-center "
-      style="min-width:30rem;"
-    >
-      <b-card-text> {{ todo.text }} </b-card-text>
-      <b-card-footer>
-        <b-button
-          class="mr-2"
-          variant="outline-danger"
-          @click="handleDelete(todo)"
-        >
-          <b-icon icon="x" scale="2" aria-hidden="true"></b-icon>
-        </b-button>
-        <b-button
-          v-if="title === 'Continues'"
-          class="ml-2"
-          variant="outline-success"
-          @click="handleCompleted(todo)"
-        >
-          <b-icon icon="check" scale="2" aria-hidden="true"></b-icon>
-        </b-button>
-      </b-card-footer> </b-card
-  ></b-col>
+  <b-card
+    border-variant="warning"
+    bg-variant="secondary"
+    text-variant="light"
+    class="text-center "
+  >
+    <b-card-text> {{ todo.text }} </b-card-text>
+    <b-card-footer>
+      <b-button
+        class="mr-2"
+        variant="outline-danger"
+        @click="handleDelete(todo)"
+      >
+        <b-icon icon="x" scale="2" aria-hidden="true"></b-icon>
+      </b-button>
+      <b-button
+        v-if="title === 'Continues'"
+        class="ml-2"
+        variant="outline-success"
+        @click="handleCompleted(todo)"
+      >
+        <b-icon icon="check" scale="2" aria-hidden="true"></b-icon>
+      </b-button>
+    </b-card-footer>
+  </b-card>
 </template>
 
 <script>

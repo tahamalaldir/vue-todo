@@ -8,7 +8,7 @@
       {{ title }} To Do Not Found
       <b-icon icon="exclamation-circle-fill" variant="danger"></b-icon>
     </h3>
-    <b-row>
+    <b-card-group columns>
       <todos-card
         :style="dizayn"
         v-for="todo in todos"
@@ -16,7 +16,7 @@
         :todo="todo"
         :title="title"
       />
-    </b-row>
+    </b-card-group>
   </b-col>
 </template>
 
